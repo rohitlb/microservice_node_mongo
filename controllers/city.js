@@ -14,10 +14,11 @@ exports.findClosePlaces = function (req, res) {
       });
       query.exec(function(err,docs) {
         if (err) throw err;
-        console.log(docs);
-      });
-      res.status(404).send({
-          status: 401,
-          message: 'Connected correctly to server.'
+        res.send({
+            success: true,
+            pet:{lat:-74.0618632 , lon:4.6608237},
+            docs: docs
+        });
+        console.log('success');
       });
 }
