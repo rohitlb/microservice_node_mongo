@@ -14,7 +14,8 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 // Import Models and Controllers
-var models = require('./models/city')(app, mongoose);
+var modelCity = require('./models/city')(app, mongoose);
+var modelPet = require('./models/pet')(app, mongoose);
 var CityCtrl = require('./controllers/city');
 
 // API routers

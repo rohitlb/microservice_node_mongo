@@ -1,24 +1,36 @@
 var mongoose = require('mongoose');
 var City  = mongoose.model('City');
+var Pet  = mongoose.model('Pet');
 
 exports.findClosePlaces = function (req, res) {
-  var query = City.find({
-        "loc": {
-          "$geoNear": {
-              "type": "Point",
-              "coordinates": [-74.0618632 , 4.6608237],
-              "spherical": true,
-              "maxDistance": 1
-          }
+  Pet.findOne({
+      id_mascota: req.params.pet
+  }, function (error, response) {
+        if (error || !response) {
+            res.status(404).send({
+                status: 401,
+                message: 'not found'
+            });
+        } else {
+            var query = City.find({
+              "loc": {
+                "$geoNear": {
+                    "type": "Point",
+                    "coordinates": response.loc.coordinates,
+                    "spherical": true,
+                    "maxDistance": 1
+                }
+              }
+            });
+            query.exec(function(err,docs) {
+              if (err) throw err;
+              res.send({
+                  success: true,
+                  pet:response,
+                  docs: docs
+              });
+              console.log('success');
+            });
         }
-      });
-      query.exec(function(err,docs) {
-        if (err) throw err;
-        res.send({
-            success: true,
-            pet:{lat:-74.0618632 , lon:4.6608237},
-            docs: docs
-        });
-        console.log('success');
-      });
+  });
 }
