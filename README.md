@@ -1,3 +1,3 @@
-# node_mongo_microservice1
+# microservice_node_mongo
 
-Microservice in nodejs using mongoose to make geospatial search
+Microservice coded in nodejs which use mongoose and execute geospatial search in mongo.
