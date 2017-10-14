@@ -6,6 +6,6 @@
     "eureka-js-client": "^2.2.1",
     "express": "^4.7.1",
     "method-override": "^2.1.2",
-    "requestify": "*"
+    "requestify": "0.2.5"
   }
 }
